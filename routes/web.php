@@ -22,3 +22,9 @@ Route::get('/mahasiswa/edit/{id}', 'mahasiswaController@edit');
 Route::put('/mahasiswa/update/{id}', 'mahasiswaController@update');
 
 Route::get('/mahasiswa/hapus/{id}', 'mahasiswaController@delete');
+
+Route::get('/stisla', function() {
+	return view('index');
+
+});
+
