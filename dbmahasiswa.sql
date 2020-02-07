@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2020 at 03:08 PM
+-- Generation Time: Feb 07, 2020 at 05:30 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -32,6 +32,7 @@ CREATE TABLE `mahasiswa` (
   `id` int(10) UNSIGNED NOT NULL,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nim` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -40,17 +41,9 @@ CREATE TABLE `mahasiswa` (
 -- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`id`, `nama`, `nim`, `created_at`, `updated_at`) VALUES
-(1, 'Dacin Widodo', '183140714111943', NULL, NULL),
-(2, 'Gandi Prasasta S.E.', '183140714111640', NULL, NULL),
-(3, 'Puspa Fujiati', '183140714111529', NULL, NULL),
-(4, 'Zulaikha Nurdiyanti', '183140714111967', NULL, NULL),
-(5, 'Irma Puspasari', '183140714111318', NULL, NULL),
-(6, 'Kawaya Harjasa Waluyo', '183140714111340', NULL, NULL),
-(7, 'Cakrabuana Daliono Siregar', '183140714111048', NULL, NULL),
-(8, 'Enteng Maulana M.M.', '183140714111309', NULL, NULL),
-(10, 'rozy r', '1111111111', '2020-02-02 05:57:10', '2020-02-02 05:57:17'),
-(12, 'fhgjfghfgh', '2344234', '2020-02-02 06:27:09', '2020-02-02 06:27:09');
+INSERT INTO `mahasiswa` (`id`, `nama`, `nim`, `image`, `created_at`, `updated_at`) VALUES
+(7, 'rozyyyyy', '183140714111019', '20200207162805.jpeg', '2020-02-07 09:19:06', '2020-02-07 09:28:05'),
+(8, 'kamu', '191919', '20200207161922.jpg', '2020-02-07 09:19:22', '2020-02-07 09:19:22');
 
 -- --------------------------------------------------------
 
@@ -95,7 +88,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `migrations`

@@ -8,5 +8,5 @@ class Mahasiswa extends Model
 {
     protected $table = "mahasiswa";
 
-    protected $fillable = ['nama','nim'];
+    protected $fillable = ['nama','nim','image'];
 }

@@ -10,7 +10,9 @@
                             <tr>
                                 <th>Nama</th>
                                 <th>NIM</th>
+                                <th>FOTO</th>
                                 <th>OPSI</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -18,6 +20,7 @@
                             <tr>
                                 <td>{{ $m->nama }}</td>
                                 <td>{{ $m->nim }}</td>
+                                <td> <img src="{{ url('image/'.$m->image) }}" width="150px"> </td>
                                 <td>
                                     <a href="/mahasiswa/edit/{{ $m->id }}" class="btn btn-secondary">Edit</a>
                                     <a href="/mahasiswa/hapus/{{ $m->id }}" class="btn btn-danger">Hapus</a>

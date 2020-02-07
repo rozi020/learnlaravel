@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\File;
+
+use Illuminate\Support\Facades\Storage;
+
 use App\Mahasiswa;
 
 class mahasiswaController extends Controller
@@ -25,13 +29,25 @@ class mahasiswaController extends Controller
     {
     	$this->validate($request,[
     		'nama' => 'required',
-    		'nim' => 'required'
-    	]);
+    		'nim' => 'required',
+            'fileUpload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
  
-        Mahasiswa::create([
-    		'nama' => $request->nama,
-    		'nim' => $request->nim
-    	]);
+
+
+    	   $files = $request->file('fileUpload');
+           $destinationPath = 'image/'; // upload path
+           $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+           $files->move($destinationPath, $profileImage);
+           $insert['image'] = "$profileImage";
+           
+           $mahasiswa = new Mahasiswa;
+           $mahasiswa->nama = $request->nama;
+           $mahasiswa->nim = $request->nim;
+           $mahasiswa->image = $insert['image'] = "$profileImage";
+           $mahasiswa->save();
+
+
  
     	return redirect('mahasiswa');
     }
@@ -42,22 +58,41 @@ class mahasiswaController extends Controller
 	   return view('isi/mahasiswa_edit', ['mahasiswa' => $mahasiswa]);
 	}
 
-	public function update($id, Request $request)
-	{
-	    $this->validate($request,[
-		   'nama' => 'required',
-		   'nim' => 'required'
-	    ]);
+    public function update($id, Request $request)
+    {
+        $this->validate($request,[
+           'nama' => 'required',
+           'nim' => 'required',          
+           'fileUpload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
 
-	    $mahasiswa = Mahasiswa::find($id);
-	    $mahasiswa->nama = $request->nama;
-	    $mahasiswa->nim = $request->nim;
-	    $mahasiswa->save();
-	    return redirect('mahasiswa');
-	}
+        $mahasiswa = Mahasiswa::find($id);
+
+        if ($files = $request->file('fileUpload')){
+            $usersImage = public_path("image/{$mahasiswa->image}"); // get previous image from folder
+        
+         if (File::exists($usersImage)) { // unlink or remove previous image from folder
+            unlink($usersImage);
+        }
+        $destinationPath = 'image/'; // upload path
+        $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+        $files->move($destinationPath, $profileImage);
+        $insert['image'] = "$profileImage";
+
+        
+        $mahasiswa->nama = $request->nama;
+        $mahasiswa->nim = $request->nim;
+        $mahasiswa->image = $insert['image'] = "$profileImage";
+     }
+        $mahasiswa->save();
+        return redirect('mahasiswa');
+    }
 
 	public function delete($id)
 	{
+	    $gambar = Mahasiswa::where('id',$id)->first();
+        File::delete('image/'.$gambar->image);
+
 	    $mahasiswa = Mahasiswa::find($id);
 	    $mahasiswa->delete();
 	    return redirect('mahasiswa');

@@ -3,7 +3,7 @@
 
    <div class="card-body">
                     <br>
-                    <form method="post" action="/mahasiswa/store">
+                    <form action="/mahasiswa/store"  id="file-upload-form" accept-charset="utf-8" enctype="multipart/form-data" method="post">
 
                         {{ csrf_field() }}
 
@@ -30,6 +30,17 @@
                             @endif
 
                         </div>
+                        
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                              <input id="file-upload" type="file" name="fileUpload" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                              <label class="custom-file-label" label for="file-upload" id="file-drag">Choose file</label>
+                            </div>
+                          </div>
+
 
                         <div class="form-group">
                             <input type="submit" class="btn btn-info" value="Simpan">

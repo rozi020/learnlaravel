@@ -17,6 +17,7 @@ class CreateTableMahasiswa extends Migration
             $table->increments('id');
             $table->string('nama');
             $table->string('nim');
+            $table->string('image');
             $table->timestamps();
         });
     }
