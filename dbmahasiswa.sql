@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2020 at 05:30 PM
+-- Generation Time: Feb 11, 2020 at 04:45 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -43,7 +43,13 @@ CREATE TABLE `mahasiswa` (
 
 INSERT INTO `mahasiswa` (`id`, `nama`, `nim`, `image`, `created_at`, `updated_at`) VALUES
 (7, 'rozyyyyy', '183140714111019', '20200207162805.jpeg', '2020-02-07 09:19:06', '2020-02-07 09:28:05'),
-(8, 'kamu', '191919', '20200207161922.jpg', '2020-02-07 09:19:22', '2020-02-07 09:19:22');
+(8, 'kamujelek', '11122 191919', '20200210093308.jpg', '2020-02-07 09:19:22', '2020-02-10 02:33:08'),
+(9, 'hai', '818117817', '20200210093411.jpg', '2020-02-10 02:30:35', '2020-02-10 02:34:11'),
+(39, 'Miss Kristina Cassin Jr.', '183140714111695', '0d6cf6955a430a7ad35aad329763a7ad.jpg', '2020-02-11 07:43:16', '2020-02-11 07:43:16'),
+(40, 'Bell Schultz', '183140714111720', 'bbd3ab536346486c55587b2b2fe0e8d4.jpg', '2020-02-11 07:43:16', '2020-02-11 07:43:16'),
+(41, 'Prof. Jovanny Beahan', '183140714111590', '67c86e60835b6ce8ad5c3e3a95e4aedd.jpg', '2020-02-11 07:43:16', '2020-02-11 07:43:16'),
+(42, 'Holly Barton', '183140714111822', '7c959b2731416737f25a830fb8ef167c.jpg', '2020-02-11 07:43:16', '2020-02-11 07:43:16'),
+(43, 'Prof. Ariel Haag', '183140714111267', '731721a18b03a98b97120507c72a1229.jpg', '2020-02-11 07:43:16', '2020-02-11 07:43:16');
 
 -- --------------------------------------------------------
 
@@ -88,7 +94,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `migrations`

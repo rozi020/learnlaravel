@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\File;
 
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Mahasiswa;
 
 class mahasiswaController extends Controller
@@ -17,6 +19,9 @@ class mahasiswaController extends Controller
     public function index()
     {
     	$mahasiswa = Mahasiswa::all();
+
+      $mahasiswa = DB::table('mahasiswa')->paginate(5);
+
     	return view('isi/mahasiswa', ['mahasiswa' => $mahasiswa]);
     }
 
@@ -39,12 +44,12 @@ class mahasiswaController extends Controller
            $destinationPath = 'image/'; // upload path
            $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
            $files->move($destinationPath, $profileImage);
-           $insert['image'] = "$profileImage";
+         //  $insert['image'] = "$profileImage";
            
            $mahasiswa = new Mahasiswa;
            $mahasiswa->nama = $request->nama;
            $mahasiswa->nim = $request->nim;
-           $mahasiswa->image = $insert['image'] = "$profileImage";
+           $mahasiswa->image = "$profileImage";
            $mahasiswa->save();
 
 
@@ -77,12 +82,11 @@ class mahasiswaController extends Controller
         $destinationPath = 'image/'; // upload path
         $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
         $files->move($destinationPath, $profileImage);
-        $insert['image'] = "$profileImage";
 
         
         $mahasiswa->nama = $request->nama;
         $mahasiswa->nim = $request->nim;
-        $mahasiswa->image = $insert['image'] = "$profileImage";
+        $mahasiswa->image = "$profileImage";
      }
         $mahasiswa->save();
         return redirect('mahasiswa');
@@ -97,6 +101,21 @@ class mahasiswaController extends Controller
 	    $mahasiswa->delete();
 	    return redirect('mahasiswa');
 	}
+
+  public function cari(Request $request)
+{
+  // menangkap data pencarian
+  $cari = $request->cari;
+
+  // mengambil data dari table pegawai sesuai pencarian data
+  $mahasiswa = DB::table('mahasiswa')
+  ->where('nama','like',"%".$cari."%")  
+  ->paginate();
+
+      // mengirim data pegawai ke view index
+  return view('isi/mahasiswa',['mahasiswa' => $mahasiswa]);
+
+}
 
 	
 	 

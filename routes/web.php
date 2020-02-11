@@ -23,6 +23,10 @@ Route::put('/mahasiswa/update/{id}', 'mahasiswaController@update');
 
 Route::get('/mahasiswa/hapus/{id}', 'mahasiswaController@delete');
 
+Route::get('/mahasiswa','mahasiswaController@index');
+
+Route::get('/mahasiswa/cari','mahasiswaController@cari');
+
 Route::get('/stisla', function() {
 	return view('index');
 
