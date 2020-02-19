@@ -18,7 +18,12 @@ class CreateTableMahasiswa extends Migration
             $table->string('nama');
             $table->string('nim');
             $table->string('image');
+            $table->integer('jurusan')->unsigned();
             $table->timestamps();
+
+            $table->foreign('jurusan')->references('id')->on('jurusan')
+            ->onDelete('restrict')
+            ->onUpdate('cascade');
         });
     }
 

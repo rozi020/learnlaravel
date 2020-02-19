@@ -8,31 +8,30 @@
                     <input type="submit" value="CARI">
                                    
                      -->
-                    <form action="/mahasiswa/cari" method="GET">
+                    <form action="/jurusan/cari" method="GET">
                                          <!-- Search form -->
                     <div class="active-cyan-3 active-cyan-4 mb-4">
-                      <input class="form-control" type="text" aria-label="Search" name="cari" placeholder="Cari Mahasiswa .." value="{{ old('cari') }}">
+                      <input class="form-control" type="text" aria-label="Search" name="cari" placeholder="Cari Jurusan .." value="{{ old('cari') }}">
                     </div>
                     </form> 
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Nama</th>
-                                <th>NIM</th>
-                                <th>FOTO</th>
+                                <th>ID</th>
+                                <th>Jurusan</th>
                                 <th>OPSI</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($mahasiswa as $m)
+                            @foreach($jurusan as $j)
                             <tr>
-                                <td>{{ $m->nama }}</td>
-                                <td>{{ $m->nim }}</td>
-                                <td> <img src="{{ url('image/'.$m->image) }}" width="150px"> </td>
+                                <td>{{ $j->id }}</td>
+                                <td>{{ $j->jurusan_mahasiswa }}</td>
+
                                 <td>
-                                    <a href="/mahasiswa/edit/{{ $m->id }}" class="btn btn-secondary">Edit</a>
-                                    <a href="/mahasiswa/hapus/{{ $m->id }}" class="btn btn-danger">Hapus</a>
+                                    <a href="/jurusan/edit/{{ $j->id }}" class="btn btn-secondary">Edit</a>
+                                    <a href="/jurusan/hapus/{{ $j->id }}" class="btn btn-danger">Hapus</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -40,10 +39,14 @@
                     </table>
 
                         <br/>
-
+                        Halaman : {{ $jurusan->currentPage() }} <br/>
+    Jumlah Data : {{ $jurusan->total() }} <br/>
+    Data Per Halaman : {{ $jurusan->perPage() }} <br/>
  
-    {{ $mahasiswa ?? ''->links() }}
-    
+ 
+    {{ $jurusan->links() }}
+
+
                 </div>
             </div>
 @stop

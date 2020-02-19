@@ -41,16 +41,50 @@
             <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">Mhs</a>
           </div>
+
           <ul class="sidebar-menu">
-              <li class="menu-header">Dashboard</li>
+              <li class="menu-header">Mahasiswa</li>
               <li class="nav-item dropdown active">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Mahasiswa</span></a>
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="{{url('mahasiswa')}}">Tabel Mahasiswa</a></li>
                   <li><a class="nav-link" href="{{url('mahasiswa/tambah')}}">Tambah Mahasiswa</a></li>
                 </ul>
               </li>
             </ul>
+
+                      <ul class="sidebar-menu">
+              <li class="menu-header">Jurusan</li>
+              <li class="nav-item dropdown active">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Jurusan</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="{{url('jurusan')}}">Tabel Jurusan</a></li>
+                  <li><a class="nav-link" href="{{url('jurusan/tambah')}}">Tambah Jurusan</a></li>
+                </ul>
+              </li>
+            </ul>
+
+          <ul class="sidebar-menu">
+              <li class="menu-header"></li>
+              <li class="nav-item dropdown active">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i><span>{{ Auth::user()->name }}</span></a>
+                <ul class="dropdown-menu">
+                  <li> <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+                   {{ __('Logout') }}
+                                    </a></li>
+                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+
+                </ul>
+              </li>
+            </ul>
+
+
+
+
         </aside>
       </div>
 
@@ -58,6 +92,7 @@
       <div class="main-content">
         <section class="section">
           <div class="row">
+                            
             
 
            @yield('content')

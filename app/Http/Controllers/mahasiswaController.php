@@ -14,7 +14,8 @@ use App\Mahasiswa;
 
 class mahasiswaController extends Controller
 {
-    
+
+
  
     public function index()
     {
@@ -35,6 +36,7 @@ class mahasiswaController extends Controller
     	$this->validate($request,[
     		'nama' => 'required',
     		'nim' => 'required',
+        
             'fileUpload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
  
@@ -109,13 +111,20 @@ class mahasiswaController extends Controller
 
   // mengambil data dari table pegawai sesuai pencarian data
   $mahasiswa = DB::table('mahasiswa')
-  ->where('nama','like',"%".$cari."%")  
+  ->where('nama','like',"%".$cari."%") 
+  ->orWhere('nim', 'like', "%".$cari."%") 
   ->paginate();
 
       // mengirim data pegawai ke view index
   return view('isi/mahasiswa',['mahasiswa' => $mahasiswa]);
 
 }
+
+  public function __construct(){
+    
+    $this->middleware('auth');
+}
+
 
 	
 	 
