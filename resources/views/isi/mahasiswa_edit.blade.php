@@ -36,6 +36,16 @@
 
                         </div>
 
+                        <div class="form-group">
+                            <label>Jurusan</label>
+                            <select class="form-control" id="jurusan" name="jurusan">
+                                <option value="" hidden>pilih jurusan</option>
+                                @foreach($jurusan as $j)
+                                    <option value="{{ $j->id }}" {{ ($j->jurusan == $j->id) ? 'selected' : ''}} >{{ $j->jurusan_mahasiswa }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>

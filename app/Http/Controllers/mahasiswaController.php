@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 
 use App\Mahasiswa;
 
+use App\Jurusan;
+
 class mahasiswaController extends Controller
 {
 
@@ -20,15 +22,16 @@ class mahasiswaController extends Controller
     public function index()
     {
     	$mahasiswa = Mahasiswa::all();
-
       $mahasiswa = DB::table('mahasiswa')->paginate(5);
-
-    	return view('isi/mahasiswa', ['mahasiswa' => $mahasiswa]);
+      $jurusan = Jurusan::all();
+    	return view('isi/mahasiswa', ['mahasiswa' => $mahasiswa], compact('mahasiswa','jurusan'));
     }
 
         public function tambah()
     {
-    	return view('isi/mahasiswa_tambah');
+
+      $jurusan = Jurusan::all();
+    	return view('isi/mahasiswa_tambah', compact('jurusan'));
     }
 
        public function store(Request $request)
@@ -36,6 +39,7 @@ class mahasiswaController extends Controller
     	$this->validate($request,[
     		'nama' => 'required',
     		'nim' => 'required',
+        'jurusan' => 'required',
         
             'fileUpload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
@@ -51,6 +55,7 @@ class mahasiswaController extends Controller
            $mahasiswa = new Mahasiswa;
            $mahasiswa->nama = $request->nama;
            $mahasiswa->nim = $request->nim;
+           $mahasiswa->jurusan = $request->jurusan;
            $mahasiswa->image = "$profileImage";
            $mahasiswa->save();
 
@@ -62,14 +67,16 @@ class mahasiswaController extends Controller
     public function edit($id)
 	{
 	   $mahasiswa = Mahasiswa::find($id);
-	   return view('isi/mahasiswa_edit', ['mahasiswa' => $mahasiswa]);
+     $jurusan = Jurusan::all();
+	   return view('isi/mahasiswa_edit', ['mahasiswa' => $mahasiswa], compact('jurusan'));
 	}
 
     public function update($id, Request $request)
     {
         $this->validate($request,[
            'nama' => 'required',
-           'nim' => 'required',          
+           'nim' => 'required',    
+           'jurusan' => 'required',      
            'fileUpload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
@@ -88,6 +95,7 @@ class mahasiswaController extends Controller
         
         $mahasiswa->nama = $request->nama;
         $mahasiswa->nim = $request->nim;
+        $mahasiswa->jurusan = $request->jurusan;
         $mahasiswa->image = "$profileImage";
      }
         $mahasiswa->save();
@@ -113,6 +121,7 @@ class mahasiswaController extends Controller
   $mahasiswa = DB::table('mahasiswa')
   ->where('nama','like',"%".$cari."%") 
   ->orWhere('nim', 'like', "%".$cari."%") 
+  ->orWhere('jurusan', 'like', "%".$cari."%") 
   ->paginate();
 
       // mengirim data pegawai ke view index

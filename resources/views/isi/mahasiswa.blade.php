@@ -20,19 +20,27 @@
                                 <th>Nama</th>
                                 <th>NIM</th>
                                 <th>FOTO</th>
+                                <th>Jurusan</th>
                                 <th>OPSI</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($mahasiswa as $m)
+                            @foreach($mahasiswa as $m => $mhs)
                             <tr>
-                                <td>{{ $m->nama }}</td>
-                                <td>{{ $m->nim }}</td>
-                                <td> <img src="{{ url('image/'.$m->image) }}" width="150px"> </td>
+                                <td>{{ $mhs->nama }}</td>
+                                <td>{{ $mhs->nim }}</td>
+                                <td> <img src="{{ url('image/'.$mhs->image) }}" width="150px"> </td>
                                 <td>
-                                    <a href="/mahasiswa/edit/{{ $m->id }}" class="btn btn-secondary">Edit</a>
-                                    <a href="/mahasiswa/hapus/{{ $m->id }}" class="btn btn-danger">Hapus</a>
+                                    @foreach($jurusan as $j)
+                                        @if($mhs->jurusan == $j->id)
+                                            {{ $j->jurusan_mahasiswa }}
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <a href="/mahasiswa/edit/{{ $mhs->id }}" class="btn btn-secondary">Edit</a>
+                                    <a href="/mahasiswa/hapus/{{ $mhs->id }}" class="btn btn-danger">Hapus</a>
                                 </td>
                             </tr>
                             @endforeach

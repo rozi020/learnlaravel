@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Alamat</label>
+                            <label>NIM</label>
                             <input name="nim" class="form-control" placeholder="NIM mahasiswa .."></input>
 
                              @if($errors->has('nim'))
@@ -41,6 +41,17 @@
                             </div>
                           </div>
 
+
+
+                        <div class="form-group">
+                            <label>Jurusan</label>
+                            <select class="form-control" name="jurusan">
+                                @foreach($jurusan as $j)
+                                    <option value="{{ $j->id }}">{{ $j->jurusan_mahasiswa }}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
 
                         <div class="form-group">
                             <input type="submit" class="btn btn-info" value="Simpan">

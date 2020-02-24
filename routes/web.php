@@ -11,9 +11,12 @@
 |
 */
 
-//--------------------------------------TABEL MAHASISWA-------------------------------------
 
-Route::get('/mahasiswa', 'mahasiswaController@index')->middleware('auth');
+Route::group(['middleware' => 'auth'], function(){
+
+//--------------------------------------TABEL MAHASISWA-------------------------------------
+	
+Route::get('/mahasiswa', 'mahasiswaController@index');
 
 Route::get('/mahasiswa/tambah', 'mahasiswaController@tambah');
 
@@ -46,7 +49,7 @@ Route::get('/jurusan/hapus/{id}', 'JurusanController@delete');
 Route::get('/jurusan/cari','JurusanController@cari');
 
 
-
+});
 
 Auth::routes();
 
