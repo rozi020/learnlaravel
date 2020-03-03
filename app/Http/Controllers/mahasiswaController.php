@@ -14,15 +14,24 @@ use App\Mahasiswa;
 
 use App\Jurusan;
 
+use App\Exports\MahasiswaExport;
+
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Http\Controllers\Controller;
+
 class mahasiswaController extends Controller
 {
 
 
  
-    public function index()
+    public function index(Request $request)
     {
-    	$mahasiswa = Mahasiswa::all();
-      $mahasiswa = DB::table('mahasiswa')->paginate(5);
+    	$mahasiswa = Mahasiswa::when($request->search, function($query) use($request){
+            $query->where('nama', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('nim', 'like', "%".$request->search."%") 
+            ->orWhere('jurusan', 'like', "%".$request->search."%");
+        })->paginate(5);
       $jurusan = Jurusan::all();
     	return view('isi/mahasiswa', ['mahasiswa' => $mahasiswa], compact('mahasiswa','jurusan'));
     }
@@ -112,27 +121,33 @@ class mahasiswaController extends Controller
 	    return redirect('mahasiswa');
 	}
 
-  public function cari(Request $request)
-{
-  // menangkap data pencarian
-  $cari = $request->cari;
+//   public function cari(Request $request)
+// {
+//   // menangkap data pencarian
+//   $cari = $request->cari;
 
-  // mengambil data dari table pegawai sesuai pencarian data
-  $mahasiswa = DB::table('mahasiswa')
-  ->where('nama','like',"%".$cari."%") 
-  ->orWhere('nim', 'like', "%".$cari."%") 
-  ->orWhere('jurusan', 'like', "%".$cari."%") 
-  ->paginate();
+//   // mengambil data dari table pegawai sesuai pencarian data
+//   $mahasiswa = DB::table('mahasiswa')
+//   ->where('nama','like',"%".$cari."%") 
+//   ->orWhere('nim', 'like', "%".$cari."%") 
+//   ->orWhere('jurusan', 'like', "%".$cari."%") 
+//   ->paginate();
 
-      // mengirim data pegawai ke view index
-  return view('isi/mahasiswa',['mahasiswa' => $mahasiswa]);
+//       // mengirim data pegawai ke view index
+//   return view('isi/mahasiswa',['mahasiswa' => $mahasiswa]);
 
-}
+// }
 
   public function __construct(){
     
     $this->middleware('auth');
 }
+
+  public function export_excel()
+
+  {
+    return Excel::download(new MahasiswaExport, 'mahasiswa.xlsx');
+  }
 
 
 	

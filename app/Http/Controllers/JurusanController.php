@@ -16,14 +16,14 @@ use App\Jurusan;
 
 class JurusanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-     $jurusan = Jurusan::all();
-
-    $jurusan = DB::table('jurusan')->paginate(5);
-
-    	return view('isi/jurusan', ['jurusan' => $jurusan]);
+      $jurusan = Jurusan::when($request->search, function($query) use($request){
+            $query->where('jurusan_mahasiswa', 'LIKE', '%'.$request->search.'%');
+        })->paginate(5);
+        return view('isi.jurusan', compact('jurusan'));
     }
+
 
      public function tambah()
     {
@@ -76,20 +76,20 @@ class JurusanController extends Controller
 	    return redirect('jurusan');
 	}
 
-	  public function cari(Request $request)
-{
-  // menangkap data pencarian
-  $cari = $request->cari;
+// 	  public function cari(Request $request)
+// {
+//   // menangkap data pencarian
+//   $cari = $request->cari;
 
-  // mengambil data dari table pegawai sesuai pencarian data
-  $jurusan = DB::table('jurusan')
-  ->where('jurusan_mahasiswa','like',"%".$cari."%")  
-  ->paginate();
+//   // mengambil data dari table pegawai sesuai pencarian data
+//   $jurusan = DB::table('jurusan')
+//   ->where('jurusan_mahasiswa','like',"%".$cari."%")  
+//   ->paginate();
 
-      // mengirim data pegawai ke view index
-  return view('isi/jurusan',['jurusan' => $jurusan]);
+//       // mengirim data pegawai ke view index
+//   return view('isi/jurusan',['jurusan' => $jurusan]);
 
-}
+// }
 
 
 }

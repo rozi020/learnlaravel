@@ -8,11 +8,13 @@
                     <input type="submit" value="CARI">
                                    
                      -->
-                    <form action="/mahasiswa/cari" method="GET">
+                    <form method="GET" class="form-inline">
                                          <!-- Search form -->
                     <div class="active-cyan-3 active-cyan-4 mb-4">
-                      <input class="form-control" type="text" aria-label="Search" name="cari" placeholder="Cari Mahasiswa .." value="{{ old('cari') }}">
+                      <input class="form-control" type="text" aria-label="Search" placeholder="Cari Mahasiswa .." value="{{ request()->get('search') }}" name="search">
+                      <a href="/mahasiswa/export_excel" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
                     </div>
+
                     </form> 
                     <table class="table">
                         <thead class="thead-dark">

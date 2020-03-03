@@ -3,16 +3,14 @@
 
  <div class="card mt-5">
                 <div class="card-body">
-<!--                 
-                    <input type="text" name="cari" placeholder="Cari Mahasiswa .." value="{{ old('cari') }}">
-                    <input type="submit" value="CARI">
-                                   
-                     -->
-                    <form action="/jurusan/cari" method="GET">
+
+
+                    <form method="GET" class="form-inline">
                                          <!-- Search form -->
                     <div class="active-cyan-3 active-cyan-4 mb-4">
-                      <input class="form-control" type="text" aria-label="Search" name="cari" placeholder="Cari Jurusan .." value="{{ old('cari') }}">
+                      <input class="form-control" type="text" aria-label="Search" placeholder="Cari Jurusan .." value="{{ request()->get('search') }}" name="search">
                     </div>
+
                     </form> 
                     <table class="table">
                         <thead class="thead-dark">
