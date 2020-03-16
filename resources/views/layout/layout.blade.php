@@ -43,6 +43,16 @@
           </div>
 
           <ul class="sidebar-menu">
+              <li class="menu-header">Dashboard</li>
+              <li class="nav-item dropdown active">
+                <a href="#" class="nav-link has-dropdown"><i class="fab fa-dashcube"></i><span>Dashboard</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="{{url('dashboard')}}">Dashboard</a></li>
+                </ul>
+              </li>
+            </ul>
+
+          <ul class="sidebar-menu">
               <li class="menu-header">Mahasiswa</li>
               <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Mahasiswa</span></a>

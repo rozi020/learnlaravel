@@ -30,6 +30,10 @@ Route::get('/mahasiswa/hapus/{id}', 'mahasiswaController@delete');
 
 Route::get('/mahasiswa/export_excel', 'mahasiswaController@export_excel');
 
+Route::get('/dashboard', 'mahasiswaController@dashboard');
+
+Route::get('/dashboard', 'mahasiswaController@hitungtable');
+
 //-----------------------------------TABEL JURUSAN---------------------------------------------
 
 Route::get('/jurusan', 'JurusanController@index');
@@ -50,7 +54,9 @@ Route::get('/jurusan/hapus/{id}', 'JurusanController@delete');
 
 Auth::routes();
 
-Route::get('/home', 'mahasiswaController@index')->name('home');
+Route::get('/home', 'mahasiswaController@dashboard')->name('home');
+
+Route::get('/home', 'mahasiswaController@hitungtable');
 
 
 Route::get('/','landingpageController@index');

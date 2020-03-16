@@ -69,6 +69,7 @@
 
   <section id="services" class="bg-light">
     <div class="container">
+      
                     <form method="GET" class="form-inline">
                                          <!-- Search form -->
                     <div class="active-cyan-3 active-cyan-4 mb-4">
@@ -76,6 +77,7 @@
                     </div>
 
                     </form> 
+                    <div class="table-responsive">
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
@@ -109,6 +111,7 @@
  
     {{ $mahasiswa ?? ''->links() }}
     </div>
+  </div>
   </section>
 
   <section id="contact">

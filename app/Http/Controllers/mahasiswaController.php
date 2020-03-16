@@ -36,6 +36,14 @@ class mahasiswaController extends Controller
     	return view('isi/mahasiswa', ['mahasiswa' => $mahasiswa], compact('mahasiswa','jurusan'));
     }
 
+
+    public function dashboard(Request $request)
+    {
+      return view('landingpage/dashboard');
+    }
+
+
+
         public function tambah()
     {
 
@@ -150,7 +158,21 @@ class mahasiswaController extends Controller
   }
 
 
-	
+
+  public function hitungtable()
+
+  { 
+     $jml_mahasiswa = Mahasiswa::count();
+     $jml_jurusan = Jurusan::count();
+     $hukum = Mahasiswa::where('jurusan', '=', '1')->get();
+     $jml_hukum = $hukum->count();
+     $jml_akun = DB::table('users')->count();
+
+     return view('landingpage.dashboard', compact('jml_mahasiswa','jml_jurusan','jml_hukum','jml_akun'));
+
+  }
+
+
 	 
 }
 

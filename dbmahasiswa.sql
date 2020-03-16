@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2020 at 04:45 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Waktu pembuatan: 16 Mar 2020 pada 07.30
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mahasiswa`
+-- Struktur dari tabel `jurusan`
+--
+
+CREATE TABLE `jurusan` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `jurusan_mahasiswa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `jurusan`
+--
+
+INSERT INTO `jurusan` (`id`, `jurusan_mahasiswa`, `created_at`, `updated_at`) VALUES
+(1, 'hukum', '2020-02-18 23:28:58', '2020-02-18 23:28:58'),
+(2, 'miner', '2020-02-18 23:29:23', '2020-02-18 23:29:23'),
+(3, 'pertanian', '2020-02-18 23:29:55', '2020-02-18 23:29:55'),
+(4, 'pengangguran', '2020-02-19 00:22:25', '2020-02-19 00:22:25');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `mahasiswa`
 --
 
 CREATE TABLE `mahasiswa` (
@@ -33,28 +56,27 @@ CREATE TABLE `mahasiswa` (
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nim` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jurusan` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `mahasiswa`
+-- Dumping data untuk tabel `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`id`, `nama`, `nim`, `image`, `created_at`, `updated_at`) VALUES
-(7, 'rozyyyyy', '183140714111019', '20200207162805.jpeg', '2020-02-07 09:19:06', '2020-02-07 09:28:05'),
-(8, 'kamujelek', '11122 191919', '20200210093308.jpg', '2020-02-07 09:19:22', '2020-02-10 02:33:08'),
-(9, 'hai', '818117817', '20200210093411.jpg', '2020-02-10 02:30:35', '2020-02-10 02:34:11'),
-(39, 'Miss Kristina Cassin Jr.', '183140714111695', '0d6cf6955a430a7ad35aad329763a7ad.jpg', '2020-02-11 07:43:16', '2020-02-11 07:43:16'),
-(40, 'Bell Schultz', '183140714111720', 'bbd3ab536346486c55587b2b2fe0e8d4.jpg', '2020-02-11 07:43:16', '2020-02-11 07:43:16'),
-(41, 'Prof. Jovanny Beahan', '183140714111590', '67c86e60835b6ce8ad5c3e3a95e4aedd.jpg', '2020-02-11 07:43:16', '2020-02-11 07:43:16'),
-(42, 'Holly Barton', '183140714111822', '7c959b2731416737f25a830fb8ef167c.jpg', '2020-02-11 07:43:16', '2020-02-11 07:43:16'),
-(43, 'Prof. Ariel Haag', '183140714111267', '731721a18b03a98b97120507c72a1229.jpg', '2020-02-11 07:43:16', '2020-02-11 07:43:16');
+INSERT INTO `mahasiswa` (`id`, `nama`, `nim`, `image`, `jurusan`, `created_at`, `updated_at`) VALUES
+(1, 'rozy', '183140714111019', '20200219072058.jpg', 2, '2020-02-18 23:49:53', '2020-02-19 00:20:58'),
+(2, 'lulu', '191819181918', '20200219072300.jpg', 4, '2020-02-19 00:23:00', '2020-02-19 00:23:00'),
+(4, 'neta', '1831407141110156', '20200314052923.png', 1, '2020-03-13 22:20:56', '2020-03-13 22:29:23'),
+(5, 'amer al barkawi', '1831407141110145', '20200314052217.jpg', 1, '2020-03-13 22:22:17', '2020-03-13 22:22:17'),
+(6, 'hansken', '1831407141110132', '20200314052908.jpg', 1, '2020-03-13 22:29:08', '2020-03-13 22:29:08'),
+(7, 'inYourdreaM', '1831407141110144', '20200314081917.jpg', 1, '2020-03-14 01:19:17', '2020-03-14 01:19:17');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Struktur dari tabel `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -64,43 +86,127 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Dumping data untuk tabel `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2020_02_01_070138_create_table_mahasiswa', 1);
+(1, '2020_02_01_070138_create_table_mahasiswa', 1),
+(2, '2020_02_17_140536_create_jurusan', 2),
+(3, '2014_10_12_000000_create_users_table', 3),
+(4, '2014_10_12_100000_create_password_resets_table', 3),
+(5, '2020_02_19_061755_create_jurusan_table', 4),
+(6, '2020_02_19_062027_create_mahasiswa_table', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'link larapel slur', 'hai3x@gmail.com', NULL, '$2y$10$MCN6.FJnsdP8Xti1ANO5sOzW/ErP31ZlKBQkfIZ034SOsruvBweO2', NULL, '2020-02-17 21:50:17', '2020-02-17 21:50:17'),
+(2, 'admin', 'admin@gmail.com', NULL, '$2y$10$jGPqt2J/hMik0.aAdRZ99et2SkP2SxNd19o92YBWlTW9RmaTqf1xu', NULL, '2020-02-17 22:52:24', '2020-02-17 22:52:24');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `mahasiswa`
+-- Indeks untuk tabel `jurusan`
 --
-ALTER TABLE `mahasiswa`
+ALTER TABLE `jurusan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migrations`
+-- Indeks untuk tabel `mahasiswa`
+--
+ALTER TABLE `mahasiswa`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mahasiswa_jurusan_foreign` (`jurusan`);
+
+--
+-- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indeks untuk tabel `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indeks untuk tabel `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `mahasiswa`
+-- AUTO_INCREMENT untuk tabel `jurusan`
+--
+ALTER TABLE `jurusan`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `mahasiswa`
+--
+ALTER TABLE `mahasiswa`
+  ADD CONSTRAINT `mahasiswa_jurusan_foreign` FOREIGN KEY (`jurusan`) REFERENCES `jurusan` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
