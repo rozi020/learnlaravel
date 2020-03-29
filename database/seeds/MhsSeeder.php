@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\Mahasiswa;
+use Faker\Factory as Faker;
+
 class MhsSeeder extends Seeder
 {
     /**
@@ -12,7 +14,6 @@ class MhsSeeder extends Seeder
     public function run()
     {
         //
-        // $faker = Faker\Factory::create('id_ID');
 
         // for($i=1; $i <10; $i++) {
         // 	DB::table('mahasiswa')->insert([

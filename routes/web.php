@@ -49,7 +49,6 @@ Route::put('/jurusan/update/{id}', 'JurusanController@update');
 Route::get('/jurusan/hapus/{id}', 'JurusanController@delete');
 
 
-
 });
 
 Auth::routes();
@@ -57,6 +56,5 @@ Auth::routes();
 Route::get('/home', 'mahasiswaController@dashboard')->name('home');
 
 Route::get('/home', 'mahasiswaController@hitungtable');
-
 
 Route::get('/','landingpageController@index');
